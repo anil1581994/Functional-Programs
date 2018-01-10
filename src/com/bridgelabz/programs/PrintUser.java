@@ -2,7 +2,7 @@ package com.bridgelabz.programs;
 
 import com.bridgelabz.utility.Utility;
 
-public class Hello {
+public class PrintUser {
 
 public static void main(String[] args) {
 

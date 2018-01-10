@@ -17,10 +17,11 @@ public class TwoDArray {
 			System.out.println("3.Printing a Boolean 2d Array......");
 	        choice=utility.getInteger();
 	        
-	        if(choice>0 && choice<=3) {
-	        System.out.println("Enter the rows and columns.........");
-	    	rows=utility.getInteger();
-	    	 columns=utility.getInteger();
+	        if(choice>0 && choice<=3) 
+	        {
+	          System.out.println("Enter the rows and columns.........");
+	    	  rows=utility.getInteger();
+	    	  columns=utility.getInteger();
 	        }
 	        
 	        

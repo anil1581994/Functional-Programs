@@ -9,7 +9,7 @@ public static void main(String[] args) {
      int stake=utility.getInteger();
      int goal=utility.getInteger();
     int trial=utility.getInteger();
-      utility.gambler(stake, goal, trial);
+      Utility.gambler(stake, goal, trial);
 	
 }
 }

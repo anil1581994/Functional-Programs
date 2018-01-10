@@ -1,6 +1,8 @@
 package com.bridgelabz.utility;
 
 import java.io.PrintWriter;
+
+
 import java.util.Random;
 import java.util.Scanner;
 
@@ -31,6 +33,18 @@ public class Utility {
 		System.out.println(Message);
 	}
 
+	/*
+	 * @param distance logic to find the distance bet two point
+	 */
+	public void printDistance(double x, double y) {
+		double result = Math.sqrt(x * x + y * y);// distance = sqrt(x*x + y*y)
+
+		System.out.println("The Distance between x and y is origin x and y " + result);
+	}
+
+	/*
+	 * @diplay the prime factor foer the given number
+	 */
 	public void diplayPrimeFactors(int n) {
 		// for each potential factor
 		for (int factor = 2; factor * factor <= n; factor++) {
@@ -50,21 +64,28 @@ public class Utility {
 	}
 
 	/*
-	 * Repacle username wish message
+	 * @param numberOfTimeFlip
 	 * 
+	 * @logic to find percentage of head and tail
 	 */
-	public void getUserName(String userName) {
-		int len = userName.length();
-		if (len >= 3) {
-			System.out.println("Hello.." + userName + "..How are You?");
-		} else {
-			System.out.println("something goes wrong");
-
+	public static void flipCoin(int numberTimeFlip) {
+		Random random = new Random();
+		int heads = 0;
+		for (int i = 0; i < numberTimeFlip; i++) {
+			int side = random.nextInt(2);// 0 to 1
+			if (side == 1) {
+				heads++;
+			}
 		}
+		System.out.println("Times head was flipped:" + heads);
+		System.out.println("Times tail was flipped:" + (numberTimeFlip - heads));
+		int headPercent = (heads * 100) / 100;
+		System.out.println("head percentage in given event:" + headPercent + "%");
+		System.out.println("tail percentage in given event:" + (numberTimeFlip - headPercent) + "%");
 	}
 
 	/*
-	 * @param stake
+	 * @param stake==amount
 	 * 
 	 * @param goal
 	 * 
@@ -98,26 +119,36 @@ public class Utility {
 	}
 
 	/*
-	 * @param numberOfTimeFlip
-	 * 
-	 * @logic to find percentage of head and tail
+	 * @param number logic to find the harmonic series
 	 */
-	public static void flipCoin(int numberTimeFlip) {
-		Random random = new Random();
-		int heads = 0;
-		for (int i = 0; i < numberTimeFlip; i++) {
-			int side = random.nextInt(2);// 0 to 1
-			if (side == 1) {
-				heads++;
-			}
+	public static void harmonicSeries(int number) {
+		double result = 0.0;
+		while (number > 0) {
+			result = result + (double) 1 / number;
+			number--;
 		}
-		System.out.println("Times head was flipped:" + heads);
-		System.out.println("Times tail was flipped:" + (numberTimeFlip - heads));
-		int headPercent = (heads * 100) / 100;
-		System.out.println("head percentage in given event:" + headPercent + "%");
-		System.out.println("tail percentage in given event:" + (numberTimeFlip - headPercent) + "%");
+		System.out.println("Output of Harmonic Number is " + result);
 	}
 
+	/*
+	 * Replaceusername wish message
+	 * 
+	 */
+	public void getUserName(String userName) {
+		int len = userName.length();
+		if (len >= 3) {
+			System.out.println("Hello.." + userName + "..How are You?");
+		} else {
+			System.out.println("something goes wrong");
+
+		}
+	}
+
+	/*
+	 * @ Enter year and ensure it must contain 4 digit
+	 * 
+	 * @ check leap year o r not
+	 */
 	static int digitNum = 0;
 
 	public static void checkLeapYear(int y) {
@@ -159,110 +190,6 @@ public class Utility {
 		} else
 			System.out.println("the power value overflow");
 	}
-
-	/*
-	 * @param distance logic to find the distance bet two point
-	 */
-	public void printDistance(double x, double y) {
-		double result = Math.sqrt(x * x + y * y);// distance = sqrt(x*x + y*y)
-
-		System.out.println("The Distance between x and y is origin x and y " + result);
-	}
-
-	/*
-	 * @param number logic to find the harmonic series
-	 */
-	public static void harmonicSeries(int number) {
-		double result = 0.0;
-		while (number > 0) {
-			result = result + (double) 1 / number;
-			number--;
-		}
-		System.out.println("Output of Harmonic Number is " + result);
-	}
-	/*
-	 * @param rows
-	 * 
-	 * @param columns
-	 * 
-	 * @logic to print 2D Array
-	 */
-
-	public <T> void print2DArray(T[][] arrayElements, int rows, int columns) {
-		PrintWriter writer = new PrintWriter(System.out);
-
-		for (int i = 0; i < rows; i++) {
-			for (int j = 0; j < columns; j++) {
-				writer.print(arrayElements[i][j] + " ");
-				writer.flush();
-			} // in for
-			System.out.println();
-		} // out for
-	}
-
-	/*
-	 * @param intnumbers * logic to find the sum of three Integer
-	 */
-	public static void printAll(int[] a) {
-		int n = a.length;
-		for (int i = 0; i < n; i++) {
-			for (int j = i + 1; j < n; j++) {
-				for (int k = j + 1; k < n; k++) {
-					if (a[i] + a[j] + a[k] == 0) {
-						System.out.println(a[i] + " " + a[j] + " " + a[k]);
-					}
-				}
-			}
-		}
-	}
-
-	public static int count(int[] a) {
-		int n = a.length;
-		int count = 0;
-		for (int i = 0; i < n; i++) {
-			for (int j = i + 1; j < n; j++) {
-				for (int k = j + 1; k < n; k++) {
-					if (a[i] + a[j] + a[k] == 0) {
-						count++;
-					}
-				}
-			}
-			System.out.println(count);
-		}
-		return count;
-
-	}
-	
-	 
-	/*
-	 * @param startTime
-	 * 
-	 * @param endTime
-	 * 
-	 * @logic to find elapsed time
-	 * 
-	 */
-
-	public long startTimer = 0;
-	public long stopTimer = 0;
-	public long elapsed;
-
-	// to start timer
-	public void start() {
-		startTimer = System.currentTimeMillis();
-		System.out.println("Start Time is: " + startTimer);
-	}
-
-	// to stop timer
-	public void stop() {
-		stopTimer = System.currentTimeMillis();
-		System.out.println("Stop Time is: " + stopTimer);
-	}
-
-	public long getElapsedTime() {
-		elapsed = stopTimer - startTimer;
-		return elapsed;
-	}
 	/*
 	 * @param double value1
 	 * 
@@ -293,6 +220,110 @@ public class Utility {
 			System.out.println("Roots are imaginary");
 		}
 	}
+	/*
+	 * @param startTime
+	 * 
+	 * @param endTime
+	 * 
+	 * @logic to find elapsed time
+	 * 
+	 */
+
+	public long startTimer = 0;
+	public long stopTimer = 0;
+	public long elapsed;
+
+	// to start timer
+	public void start() {
+		startTimer = System.currentTimeMillis();
+		System.out.println("Start Time is: " + startTimer);
+	}
+
+	// to stop timer
+	public void stop() {
+		stopTimer = System.currentTimeMillis();
+		System.out.println("Stop Time is: " + stopTimer);
+	}
+
+	public long getElapsedTime() {
+		elapsed = stopTimer - startTimer;
+		return elapsed;
+	}
+
+	/*
+	 * permutation function
+	 * 
+	 * @param str string to calculate permutation for
+	 * 
+	 * @param l starting index
+	 * 
+	 * @param r end index
+	 */
+	static int count = 0;
+
+	public static void recursivePermutation(String str, int i, int n) {
+
+		if (i == n) {
+			count++;
+			System.out.println(str);
+			System.out.println(count);
+		} else {
+			for (int j = i; j <= n; j++) {
+				str = swap(str, i, j);
+				recursivePermutation(str, i + 1, n);
+				str = swap(str, i, j);// backtracking
+			}
+		}
+	}
+
+	/*
+	 * @param intnumbers * logic to find the sum of three Integer
+	 */
+	public static void triplets(int[] a) {
+
+		// int a[] = { 0, -1, 2, -3, 1 };
+
+		int i, j, k;
+		int count = 0;
+		boolean found = false;
+
+		for (i = 0; i < a.length - 2; i++) {
+			for (j = i + 1; j < a.length - 1; j++) {
+				for (k = j + 1; k < a.length; k++) {
+					if (a[i] + a[j] + a[k] == 0) {
+
+						System.out.println(a[i] + " " + a[j] + " " + a[k]);
+						found = true;
+						count++;
+
+					}
+				}
+			}
+		}
+		System.out.println("number of triplets:" + count);
+		if (found == false)
+			System.out.println("Sum of Triplets Not Found......");
+	}
+
+	/*
+	 * @param rows
+	 * 
+	 * @param columns
+	 * 
+	 * @logic to print 2D Array
+	 */
+
+	public <T> void print2DArray(T[][] arrayElements, int rows, int columns) {
+
+		for (int i = 0; i < rows; i++) {
+
+			for (int j = 0; j < columns; j++) {
+				System.out.print(arrayElements[i][j] + " ");
+
+			}
+			System.out.println();
+		} // out for
+	}
 
 	/*
 	 * @param temprature
@@ -309,36 +340,6 @@ public class Utility {
 		System.out.println("temprature is......" + temperature);
 		System.out.println("wind Speed is......" + velocity);
 		System.out.println("wind chill is......" + windChill);
-	}
-
-	/*
-	 * permutation function
-	 * 
-	 * @param str string to calculate permutation for
-	 * 
-	 * @param l starting index
-	 * 
-	 * @param r end index
-	 */
-	static int count=0;
-	public static void permute(String str, int i, int n)
-	{ 
-		
-		if (i == n)
-		{
-			count++;
-			System.out.println(str);
-			System.out.println(count);
-		}
-		else 
-		{
-			for (int j = i; j <= n; j++) 
-			{
-				str = swap(str, i, j);
-				permute(str, i + 1, n);
-				str = swap(str, i,j );//backtracking
-			}
-		}
 	}
 
 	/*
