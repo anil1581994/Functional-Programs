@@ -11,8 +11,8 @@ public class Permutation {
 	        String str =utility.getString();
 	        int n = str.length();
 	         Utility.recursivePermutation(str, 0, n-1);
-	         //System.out.println("Enter a string to check possible permutation by iteration ");
-	        // Utility.iterativPermute(str,0,n-1);
+	         System.out.println("Enter a string to check possible permutation by iteration ");
+	         Utility.iterativPermute(str,0,n-1);
 	        
 	    }
 	 

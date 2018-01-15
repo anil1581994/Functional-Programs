@@ -6,7 +6,7 @@ public class LeapYear {
 public static void main(String[] args) {
 	Utility utility=new Utility();
 
-	  int digitNum=0;
+	  int digitNum=0;//pass as param
 	   
 	   System.out.println("enter year to check leap year or not");
 	    int y=utility.getInteger();

@@ -2,7 +2,7 @@ package com.bridgelabz.programs;
 
 import java.util.Scanner;
 
-public class TicTacToex {
+public class TicTacToe {
 
 	static final int EMPTY = 0;
 	static final int NONE = 0;
@@ -13,7 +13,7 @@ public class TicTacToex {
 	public static void main(String[] args) {
 		Scanner scanner = new Scanner(System.in);
 
-		// 1 = computer,2=computer
+		// 1 = computer,2=user
 		int turn = COMPUTER;// comp is starting the game
 
 		int[][] board = new int[3][3];
@@ -57,7 +57,7 @@ public class TicTacToex {
 			winner = checkWinner(board);
 
 			if (winner != NONE)
-				break;
+				break;//winner is no-one brek entire while loop
 
 			// switch turn
 			if (turn == USER) {
@@ -82,7 +82,7 @@ public class TicTacToex {
 		}
 	}// main
 
-	// Print the board
+	// Print the board with move which having specified char value
 	public static void print_board(int[][] board) {
 		System.out.print(printChar(board[0][0]));
 		System.out.print("|");
@@ -104,14 +104,14 @@ public class TicTacToex {
 	}
 
 	// Return an X for user turn or O comp depending upon whose move it was
-	public static char printChar(int b) //
+	public static char printChar(int b) //move
 	{
 		switch (b) {
 		case EMPTY:
 			return ' ';
-		case USER:// 2
+		case USER://  if 2
 			return 'X';
-		case COMPUTER:
+		case COMPUTER://if 1
 			return 'O';
 
 		}
@@ -177,4 +177,4 @@ public class TicTacToex {
 		return move;
 	}
 
-}// classS
+}// class

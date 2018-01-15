@@ -1,8 +1,5 @@
 package com.bridgelabz.utility;
 
-import java.io.PrintWriter;
-
-
 import java.util.Random;
 import java.util.Scanner;
 
@@ -71,17 +68,21 @@ public class Utility {
 	public static void flipCoin(int numberTimeFlip) {
 		Random random = new Random();
 		int heads = 0;
+		int tails = 0;
 		for (int i = 0; i < numberTimeFlip; i++) {
-			int side = random.nextInt(2);// 0 to 1
-			if (side == 1) {
+			double side = Math.random();// 0 to 1
+			if (side > 0.5) {
 				heads++;
+			} else {
+				tails++;
 			}
 		}
 		System.out.println("Times head was flipped:" + heads);
-		System.out.println("Times tail was flipped:" + (numberTimeFlip - heads));
-		int headPercent = (heads * 100) / 100;
+		System.out.println("Times tail was flipped:" + tails);
+		int headPercent = (heads * 100) / numberTimeFlip;
+		int tailPercentage = (tails * 100) / numberTimeFlip;
 		System.out.println("head percentage in given event:" + headPercent + "%");
-		System.out.println("tail percentage in given event:" + (numberTimeFlip - headPercent) + "%");
+		System.out.println("tail percentage in given event:" + tailPercentage + "%");
 	}
 
 	/*
@@ -93,10 +94,12 @@ public class Utility {
 	 */
 	public static void gambler(int stake, int goal, int trial) {
 
-		int i, wins = 0, bets = 0;
+		int i, wins = 0, bets = 0, cash = 0;
+		;
 		for (i = 0; i < trial; i++) {
-			int cash = stake;
-			while (cash > 0 && cash < goal) {
+			cash = stake;
+			while (cash > 0 && cash < goal)
+			{
 
 				bets++;
 				if (Math.random() < 0.5)
@@ -105,17 +108,50 @@ public class Utility {
 					cash--;// loss
 			}
 			if (cash == goal) {
-				// System.out.println("the cash value:"+cash);
+				
 				wins++;
 			}
 
 		} // for
-			// System.out.println("the cash value:"+cash);
-		System.out.println("the value of bets:" + bets);
+		
 		System.out.println(wins + " wins of " + trial);
-		System.out.println("Number of Percentage won.........." + 100 * wins / trial);
-		System.out.println("Average Number of bets......" + bets / trial);
+		System.out.println("Number of Percentage won.........." + 100 * wins / trial + "%");
+		System.out.println("Average Number of bets......" + 100 * bets / trial);
 
+	}
+	// cupon number
+
+	private static int getCoupon() {
+		Random r = new Random();
+		return r.nextInt((25 - 1) + 1) + 1;
+	}
+
+	public static int PrintDistinctCoupon(int numberOfCoupon) 
+	{
+		int[] value = new int[numberOfCoupon];
+
+		int count = 0;// number of card count
+		int pointer = 1;//distinct card
+
+		value[0]= getCoupon();
+		
+		while(pointer<value.length) {
+			int newCupon=getCoupon();
+			
+			if(value[pointer-1]!= newCupon) {
+				value[pointer] = newCupon;
+				pointer++;
+			}
+			
+			count++;
+			
+		}
+		for (int integer : value) {
+			System.out.print(integer+"\t");
+			
+		}
+		System.out.println("\n");
+		return count;
 	}
 
 	/*
@@ -134,14 +170,22 @@ public class Utility {
 	 * Replaceusername wish message
 	 * 
 	 */
-	public void getUserName(String userName) {
-		int len = userName.length();
-		if (len >= 3) {
-			System.out.println("Hello.." + userName + "..How are You?");
-		} else {
-			System.out.println("something goes wrong");
+	/*
+	 * public String getUserName(String userName) { int len = userName.length(); if
+	 * (len >= 3) { System.out.println("Hello.." + userName + "..How are You?"); }
+	 * else { System.out.println("something goes wrong");
+	 * 
+	 * } }
+	 */
 
+	public static String replaceUser(String userName) {
+		String str1 = "";
+		userName = userName.replaceAll("name ", userName);
+
+		if (userName.length() <= 3) {
+			System.out.println("Hello " + userName + " How are you ?");
 		}
+		return userName;
 	}
 
 	/*
@@ -160,7 +204,7 @@ public class Utility {
 		} while (y != 0);
 		// System.out.println("total digit in year is:"+digitNum);
 		if (digitNum == 4) {
-			if ((temp % 400 == 0) || (temp % 4 == 0) && (temp % 100 == 0)) {
+			if (temp % 4 == 0) {
 				System.out.println("it is leap year");
 			} else {
 				System.out.println("not a leap year");
@@ -178,17 +222,17 @@ public class Utility {
 	 * 
 	 * @logic to find the power of 2
 	 */
-	static int x = 2;
 
 	public static void powerOfTwo(int n) {
+		int i = 0;
+		int power = 1;
 
-		if (n > 0 && n <= 31) {
-			for (int i = 0; i <= n; i++) {
-				// System.out.println("the power of a:"+Math.pow(x,i));
-				System.out.println(Math.pow(x, i) + " ");
-			}
-		} else
-			System.out.println("the power value overflow");
+		System.out.println("Powers of 2 that are less than 2^" + n);
+		while (i <= n) {
+			System.out.println("2^" + i + " = " + power);
+			power = power * 2;
+			i++;
+		}
 	}
 	/*
 	 * @param double value1
@@ -276,6 +320,61 @@ public class Utility {
 		}
 	}
 
+	// iterative permutation
+	public static int fact(int length) {
+		return (length == 1) ? 1 : length * fact(length - 1);
+	}
+
+	public static void iterativPermute(String str, int i, int n) {
+		int length = str.length();
+		int totalPermutation = fact(length);
+		int j = 1;// point to second position
+		int m = 0;// to fix the position
+		int perm_count;
+		String per_s = str;
+		for (perm_count = 0; perm_count <= totalPermutation; perm_count++) {
+			int k = 0;// no of iteration for current first character
+			while (k != totalPermutation / length) {
+				while (j != length - 1) {
+					System.out.println(per_s);
+					per_s = swap(per_s, j, j + 1);
+					j++;
+					k++;
+					perm_count++;
+				} // w-1
+				j = 1;
+
+			} // w-2
+
+			m++;// move to next character to be fixed in str[]
+			if (m == length) {
+				break;
+			}
+			per_s = swap(per_s, 0, m);
+		} // for
+
+	}// m
+
+	/*
+	 * Swap Characters at position
+	 * 
+	 * @param a string value
+	 * 
+	 * @param i position 1
+	 * 
+	 * @param j position 2
+	 * 
+	 * @return swapped string
+	 */
+	public static String swap(String a, int i, int j) {
+		char temp;
+		char[] charArray = a.toCharArray();
+		temp = charArray[i];
+		charArray[i] = charArray[j];
+		charArray[j] = temp;
+		return String.valueOf(charArray);
+	}
+
 	/*
 	 * @param intnumbers * logic to find the sum of three Integer
 	 */
@@ -342,23 +441,4 @@ public class Utility {
 		System.out.println("wind chill is......" + windChill);
 	}
 
-	/*
-	 * Swap Characters at position
-	 * 
-	 * @param a string value
-	 * 
-	 * @param i position 1
-	 * 
-	 * @param j position 2
-	 * 
-	 * @return swapped string
-	 */
-	public static String swap(String a, int i, int j) {
-		char temp;
-		char[] charArray = a.toCharArray();
-		temp = charArray[i];
-		charArray[i] = charArray[j];
-		charArray[j] = temp;
-		return String.valueOf(charArray);
-	}
 }// uend
